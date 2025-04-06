@@ -16,10 +16,10 @@ module.exports = function(app) {
   app.use(
     '/locales/add',
     createProxyMiddleware({
-      target: 'http://localhost:5001/api/v1',
+      target: 'http://localhost:5001',
       changeOrigin: true,
       pathRewrite: {
-        '^/locales/add': '/locales/add', // パスをそのまま保持
+        '^/locales/add': '/api/v1/locales/add', // バックエンドの正しいパスにリライト
       },
     })
   );
