@@ -37,6 +37,8 @@ i18n
     backend: {
       // 翻訳JSONファイルの場所
       loadPath: '/locales/{{lng}}/{{ns}}.json',
+      // 翻訳追加のエンドポイント - 開発環境ではAPIサーバーを使用
+      addPath: '/api/v1/locales/add/{{lng}}/{{ns}}',
     },
     // 検出オプション
     detection: {
