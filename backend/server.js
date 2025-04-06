@@ -4,9 +4,48 @@
  */
 
 // 環境変数の読み込み
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV || 'development'}`
-});
+const path = require('path');
+const fs = require('fs');
+
+// 絶対パスで.envファイルを指定
+const envPath = path.resolve(__dirname, '.env');
+console.log(`🔍 .envファイルパス: ${envPath}`);
+require('dotenv').config({ path: envPath });
+
+// 環境固有の設定があれば上書き
+const envDevPath = path.resolve(__dirname, `.env.${process.env.NODE_ENV || 'development'}`);
+console.log(`🔍 環境固有ファイルパス: ${envDevPath}`);
+if (fs.existsSync(envDevPath)) {
+  require('dotenv').config({
+    path: envDevPath,
+    override: true
+  });
+}
+
+// 環境変数の読み込み確認
+if (fs.existsSync(envPath)) {
+  console.log('✅ .envファイルが存在します。');
+} else {
+  console.log('⚠️ .envファイルが見つかりません！');
+}
+
+if (fs.existsSync(envDevPath)) {
+  console.log(`✅ 環境固有の.envファイルが存在します。`);
+} else {
+  console.log(`ℹ️ 環境固有の.envファイルは存在しません。`);
+}
+
+// 重要な環境変数のデバッグログ（セキュリティに注意して部分表示）
+const debugEnv = {
+  NODE_ENV: process.env.NODE_ENV,
+  PORT: process.env.PORT,
+  MONGODB_URI: process.env.MONGODB_URI 
+    ? `${process.env.MONGODB_URI.substring(0, 10)}...` 
+    : undefined,
+  DB_NAME: process.env.DB_NAME,
+  API_VERSION: process.env.API_VERSION
+};
+console.log('📊 環境変数:', debugEnv);
 
 const express = require('express');
 const cors = require('cors');
@@ -68,18 +107,37 @@ app.use((req, res) => {
 // エラーハンドラーミドルウェア
 app.use(errorMiddleware);
 
-// データベース接続
+// サーバー起動関数
+const startServer = () => {
+  // 環境変数PORTを整数に変換して確認
+  const envPort = process.env.PORT;
+  console.log(`🔧 環境変数PORT: "${envPort}", タイプ: ${typeof envPort}`);
+  
+  // 明示的に整数変換して5001をデフォルトに
+  const PORT = envPort ? parseInt(envPort, 10) : 5001;
+  console.log(`🚪 使用するポート: ${PORT}`);
+  
+  logger.info(`ポート ${PORT} でサーバーを起動します...`);
+  httpServer.listen(PORT, () => {
+    logger.info(`サーバーが起動しました - ポート ${PORT}`);
+  });
+};
+
+// データベースへの接続処理
 connectDatabase()
   .then(() => {
-    // サーバー起動
-    const PORT = process.env.PORT || 5000;
-    httpServer.listen(PORT, () => {
-      logger.info(`サーバーが起動しました - ポート ${PORT}`);
-    });
+    startServer();
   })
   .catch(err => {
-    logger.error('データベース接続エラー:', err);
-    process.exit(1);
+    if (process.env.NODE_ENV === 'development') {
+      // 開発環境では接続エラーでもサーバーを起動
+      logger.warn('開発環境: データベース接続エラーを無視して続行します');
+      startServer(); 
+    } else {
+      // 本番環境では、データベース接続は必須
+      logger.error('データベース接続エラー:', err);
+      process.exit(1);
+    }
   });
 
 // 未処理の例外ハンドラー
