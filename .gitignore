@@ -41,4 +41,6 @@ Thumbs.db
 *.sublime-workspace
 
 # 一時ファイル
-.appgenius_temp/
+.appgenius_temp/# Environment variables
+backend/.env.development
+backend/.env.*
