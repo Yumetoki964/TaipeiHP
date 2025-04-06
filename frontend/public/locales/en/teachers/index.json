@@ -1,0 +1,23 @@
+{
+  "pageTitle": "Our Teachers",
+  "pageDescription": "Meet the professional teachers at Yumetoki Commercial Co., Ltd., their backgrounds and specialties",
+  "pageHeading": "Our Teachers",
+  "pageIntro": "At Yumetoki Commercial, we have a team of professional, experienced teachers providing high-quality education services.",
+  "teachersTitle": "Our Teachers",
+  "teachersSubtitle": "Learn more about our teachers and their areas of expertise",
+  "searchTeachers": "Search Teachers",
+  "filterBySpecialty": "Filter by Specialty",
+  "allSpecialties": "All Specialties",
+  "noTeachersFound": "No teachers found matching your criteria",
+  "teacherDetailTitle": "Teacher Profile",
+  "teacherDetailDescription": "Detailed profile of {{teacherName}}, specialties and background",
+  "biography": "Biography",
+  "specialties": "Areas of Expertise",
+  "backToTeachersList": "Back to Teachers List",
+  "teacherNotFound": "Teacher information not found",
+  "contactForLesson": "Inquire About Lessons",
+  "errors": {
+    "failedToLoadTeachers": "Failed to load teachers list. Please try again later",
+    "failedToLoadTeacherDetails": "Failed to load teacher details. Please try again later"
+  }
+}

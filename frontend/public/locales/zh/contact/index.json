@@ -1,0 +1,89 @@
+{
+  "title": "聯絡我們",
+  "subtitle": "我們期待聽到您的聲音",
+  "overview": "如有任何疑問或想了解更多關於我們的課程和服務，請通過以下方式與我們聯繫。我們的團隊隨時準備協助您。",
+  "contactForm": {
+    "title": "發送訊息",
+    "name": "姓名",
+    "email": "電子郵件",
+    "phone": "電話號碼（選填）",
+    "message": "訊息",
+    "category": "問題類別",
+    "categories": {
+      "general": "一般諮詢",
+      "course": "課程相關",
+      "trial": "體驗課程"
+    },
+    "preferredLanguage": "偏好聯絡語言",
+    "languages": {
+      "zh": "繁體中文",
+      "en": "英文",
+      "ja": "日文"
+    },
+    "submit": "發送訊息",
+    "success": "謝謝您的訊息！我們將盡快回覆您。",
+    "error": "發送訊息時出現錯誤。請稍後再試。",
+    "required": "必填欄位",
+    "invalidEmail": "請輸入有效的電子郵件地址",
+    "processing": "發送中..."
+  },
+  "trialLessonForm": {
+    "title": "預約體驗課程",
+    "studentName": "學生姓名",
+    "parentName": "家長姓名（學生未滿18歲時必填）",
+    "email": "電子郵件",
+    "phone": "電話號碼",
+    "age": "學生年齡",
+    "schoolGrade": "學生年級（選填）",
+    "courseInterest": "感興趣的課程",
+    "selectCourse": "請選擇課程",
+    "preferredSchool": "偏好校區",
+    "selectSchool": "請選擇校區",
+    "preferredDate": "偏好日期（可多選）",
+    "preferredTime": "偏好時間（可多選）",
+    "selectDate": "請選擇日期",
+    "selectTime": "請選擇時間",
+    "additionalMessage": "其他需求或問題（選填）",
+    "preferredLanguage": "偏好聯絡語言",
+    "submit": "預約體驗課程",
+    "success": "謝謝您的預約！我們將盡快與您聯繫確認體驗課程詳情。",
+    "error": "預約提交時出現錯誤。請稍後再試。",
+    "required": "必填欄位",
+    "invalidEmail": "請輸入有效的電子郵件地址",
+    "invalidPhone": "請輸入有效的電話號碼",
+    "processing": "預約中..."
+  },
+  "schoolContacts": {
+    "title": "校區聯絡方式",
+    "call": "致電",
+    "visit": "參觀",
+    "openingHours": "營業時間",
+    "weekdays": "週一至週五",
+    "weekends": "週六至週日"
+  },
+  "faq": {
+    "title": "常見問題",
+    "questions": [
+      {
+        "question": "如何選擇適合我孩子的課程？",
+        "answer": "我們建議先通過免費的體驗課程讓我們了解孩子的學習風格和需求。我們的專業教師會根據評估結果推薦最適合的課程。"
+      },
+      {
+        "question": "體驗課程需要付費嗎？",
+        "answer": "不需要。我們提供一次免費的體驗課程，讓您和孩子了解我們的教學方式，同時讓我們的教師評估學生的學習需求。"
+      },
+      {
+        "question": "課程費用如何計算？",
+        "answer": "課程費用根據您選擇的科目和課時長度而有所不同。請聯繫我們獲取最新的課程價格表，我們也提供套餐折扣。"
+      },
+      {
+        "question": "如何取消或更改已預約的課程？",
+        "answer": "請至少提前24小時通知我們，以便重新安排課程時間。頻繁取消可能會影響您預定喜愛時段的優先權。"
+      },
+      {
+        "question": "你們提供哪些科目的輔導？",
+        "answer": "我們提供所有主要學科的輔導，包括數學、科學、英語、中文等。同時也提供升學考試準備課程。"
+      }
+    ]
+  }
+}

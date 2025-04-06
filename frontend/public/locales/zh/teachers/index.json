@@ -1,0 +1,23 @@
+{
+  "pageTitle": "師資介紹",
+  "pageDescription": "夢時商業股份有限公司的專業師資介紹、經歷和專門領域",
+  "pageHeading": "我們的師資",
+  "pageIntro": "我們夢時商業擁有一支專業、經驗豐富的師資團隊，為學生提供高品質的教育服務。",
+  "teachersTitle": "我們的師資",
+  "teachersSubtitle": "更多地了解我們的師資和專業領域",
+  "searchTeachers": "搜尋師資",
+  "filterBySpecialty": "按專業篩選",
+  "allSpecialties": "所有專業",
+  "noTeachersFound": "找不到符合條件的師資",
+  "teacherDetailTitle": "師資詳情",
+  "teacherDetailDescription": "{{teacherName}}的詳細介紹、專業和經歷",
+  "biography": "個人簡歷",
+  "specialties": "專業領域",
+  "backToTeachersList": "返回師資列表",
+  "teacherNotFound": "找不到師資信息",
+  "contactForLesson": "預約課程",
+  "errors": {
+    "failedToLoadTeachers": "加載師資列表失敗，請稍後再試",
+    "failedToLoadTeacherDetails": "加載師資詳情失敗，請稍後再試"
+  }
+}

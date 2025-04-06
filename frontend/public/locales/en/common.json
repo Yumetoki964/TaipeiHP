@@ -1,0 +1,21 @@
+{
+  "menu": {
+    "home": "Home",
+    "about": "About Us",
+    "courses": "Courses",
+    "schools": "Schools",
+    "teachers": "Teachers",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "footer": {
+    "company": "Yumetoki Commercial Co., Ltd.",
+    "rights": "© 2025 All Rights Reserved",
+    "address": "Neihu District, Taipei",
+    "phone": "Phone: ",
+    "email": "Email: ",
+    "follow": "Follow Us: "
+  },
+  "readMore": "Read More"
+}

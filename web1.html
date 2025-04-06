@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夢時商業股份有限公司 - 專業1對1教學</title>
+    <!-- Material UI and React CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/@mui/material@5.14.12/umd/material-ui.production.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .gold-text {
+            color: #d4af37;
+        }
+        
+        .dark-bg {
+            background-color: #1a1a1a;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hide-mobile {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .hide-desktop {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { 
+            AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem, 
+            Card, CardContent, CardMedia, Grid, Container, Box, Paper, Divider,
+            Drawer, List, ListItem, ListItemIcon, ListItemText, CircularProgress,
+            Snackbar, Alert, CssBaseline, useMediaQuery, useTheme, Tabs, Tab, 
+            Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
+        } = MaterialUI;
+        
+        // 言語データ
+        const languages = {
+            'zh': { code: 'zh', label: '繁體中文', flag: '🇹🇼' },
+            'ja': { code: 'ja', label: '日本語', flag: '🇯🇵' },
+            'en': { code: 'en', label: 'English', flag: '🇺🇸' }
+        };
+        
+        // モックデータ - 多言語対応
+        const translations = {
+            zh: {
+                menu: {
+                    home: '首頁',
+                    about: '關於我們',
+                    courses: '課程介紹',
+                    schools: '校舍介紹',
+                    teachers: '師資介紹',
+                    faq: '常見問題',
+                    blog: '教育專欄',
+                    contact: '聯絡我們'
+                },
+                hero: {
+                    title: '專業的1對1教學',
+                    subtitle: '為每位學生量身打造學習計劃',
+                    cta: '免費體驗課程'
+                },
+                features: {
+                    title: '夢時教育的特色',
+                    subtitle: '我們提供最優質的個人化教育服務',
+                    feature1: {
+                        title: '1對1個別指導',
+                        desc: '根據學生的學習風格和進度提供個性化教學'
+                    },
+                    feature2: {
+                        title: '專業師資',
+                        desc: '經驗豐富的教師團隊，提供高品質的教學'
+                    },
+                    feature3: {
+                        title: '全年齡段教學',
+                        desc: '從小學到高中，甚至大學和社會人士都適用的課程'
+                    }
+                },
+                schools: {
+                    title: '我們的校舍',
+                    school1: {
+                        name: '拓人明湖校',
+                        address: '台北市內湖區',
+                        details: '查看詳情'
+                    },
+                    school2: {
+                        name: '拓人內湖站前校',
+                        address: '台北市內湖區',
+                        details: '查看詳情'
+                    }
+                },
+                news: {
+                    title: '最新消息',
+                    more: '查看更多'
+                },
+                sister: {
+                    title: '日本姊妹公司',
+                    name: '株式会社銀座夢時',
+                    desc: '我們與日本銀座夢時有密切合作，提供國際化的教育視野',
+                    link: '訪問銀座夢時官網'
+                },
+                footer: {
+                    company: '夢時商業股份有限公司',
+                    rights: '© 2023 所有權利保留',
+                    address: '台北市內湖區',
+                    phone: '電話：',
+                    email: '電子郵件：',
+                    follow: '關注我們：'
+                }
+            },
+            ja: {
+                menu: {
+                    home: 'ホーム',
+                    about: '私たちについて',
+                    courses: 'コース紹介',
+                    schools: '校舎紹介',
+                    teachers: '講師紹介',
+                    faq: 'よくある質問',
+                    blog: 'ブログ',
+                    contact: 'お問い合わせ'
+                },
+                hero: {
+                    title: 'プロフェッショナルな1対1指導',
+                    subtitle: '生徒一人ひとりに合わせた学習プラン',
+                    cta: '無料体験授業'
+                },
+                features: {
+                    title: '夢時教育の特徴',
+                    subtitle: '最高品質の個別教育サービスを提供します',
+                    feature1: {
+                        title: '1対1の個別指導',
+                        desc: '生徒の学習スタイルと進度に合わせた個別指導'
+                    },
+                    feature2: {
+                        title: 'プロの講師陣',
+                        desc: '経験豊富な教師陣による質の高い指導'
+                    },
+                    feature3: {
+                        title: '全年齢対応',
+                        desc: '小学生から高校生、大学生、社会人まで対応するコース'
+                    }
+                },
+                schools: {
+                    title: '校舎紹介',
+                    school1: {
+                        name: '拓人明湖校',
+                        address: '台北市内湖区',
+                        details: '詳細を見る'
+                    },
+                    school2: {
+                        name: '拓人内湖駅前校',
+                        address: '台北市内湖区',
+                        details: '詳細を見る'
+                    }
+                },
+                news: {
+                    title: 'お知らせ',
+                    more: 'もっと見る'
+                },
+                sister: {
+                    title: '日本の関連会社',
+                    name: '株式会社銀座夢時',
+                    desc: '日本の銀座夢時と連携し、国際的な教育視点を提供しています',
+                    link: '銀座夢時のウェブサイトを訪問'
+                },
+                footer: {
+                    company: '夢時商業股份有限公司',
+                    rights: '© 2023 All Rights Reserved',
+                    address: '台北市内湖区',
+                    phone: '電話：',
+                    email: 'メール：',
+                    follow: 'フォローする：'
+                }
+            },
+            en: {
+                menu: {
+                    home: 'Home',
+                    about: 'About Us',
+                    courses: 'Courses',
+                    schools: 'Schools',
+                    teachers: 'Teachers',
+                    faq: 'FAQ',
+                    blog: 'Blog',
+                    contact: 'Contact'
+                },
+                hero: {
+                    title: 'Professional 1-on-1 Tutoring',
+                    subtitle: 'Tailored learning plans for each student',
+                    cta: 'Free Trial Lesson'
+                },
+                features: {
+                    title: 'Our Features',
+                    subtitle: 'We provide the highest quality personalized education',
+                    feature1: {
+                        title: '1-on-1 Tutoring',
+                        desc: 'Personalized teaching based on student\'s learning style and progress'
+                    },
+                    feature2: {
+                        title: 'Professional Teachers',
+                        desc: 'Experienced teaching team providing high-quality education'
+                    },
+                    feature3: {
+                        title: 'All Ages Welcome',
+                        desc: 'Courses suitable for elementary to high school students, and even university students and adults'
+                    }
+                },
+                schools: {
+                    title: 'Our Schools',
+                    school1: {
+                        name: 'Takuto Minghu School',
+                        address: 'Neihu District, Taipei',
+                        details: 'View Details'
+                    },
+                    school2: {
+                        name: 'Takuto Neihu Station School',
+                        address: 'Neihu District, Taipei',
+                        details: 'View Details'
+                    }
+                },
+                news: {
+                    title: 'Latest News',
+                    more: 'View More'
+                },
+                sister: {
+                    title: 'Our Sister Company in Japan',
+                    name: 'Ginza Yumetoki Co., Ltd.',
+                    desc: 'We work closely with Ginza Yumetoki in Japan to provide an international educational perspective',
+                    link: 'Visit Ginza Yumetoki Website'
+                },
+                footer: {
+                    company: 'Yumetoki Commercial Co., Ltd.',
+                    rights: '© 2023 All Rights Reserved',
+                    address: 'Neihu District, Taipei',
+                    phone: 'Phone: ',
+                    email: 'Email: ',
+                    follow: 'Follow Us: '
+                }
+            }
+        };
+        
+        // ニュースのモックデータ
+        const newsData = [
+            {
+                id: 1,
+                title: {
+                    zh: '2023年暑期課程現已開放報名',
+                    ja: '2023年夏期講習の申込受付開始',
+                    en: '2023 Summer Courses Now Open for Registration'
+                },
+                date: '2023-05-15',
+                image: 'https://source.unsplash.com/random/300x200/?school'
+            },
+            {
+                id: 2,
+                title: {
+                    zh: '新增高中數學強化班',
+                    ja: '高校数学強化クラス新設',
+                    en: 'New High School Math Intensive Class'
+                },
+                date: '2023-04-20',
+                image: 'https://source.unsplash.com/random/300x200/?math'
+            },
+            {
+                id: 3,
+                title: {
+                    zh: '恭喜本校學生在全國競賽中獲獎',
+                    ja: '全国コンテストで当校の生徒が受賞',
+                    en: 'Congratulations to Our Students for Winning National Competition'
+                },
+                date: '2023-03-10',
+                image: 'https://source.unsplash.com/random/300x200/?award'
+            }
+        ];
+        
+        // メインアプリケーション
+        function App() {
+            const theme = useTheme();
+            const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+            const [currentLang, setCurrentLang] = React.useState('zh');
+            const [menuAnchor, setMenuAnchor] = React.useState(null);
+            const [langAnchor, setLangAnchor] = React.useState(null);
+            const [drawerOpen, setDrawerOpen] = React.useState(false);
+            const [loading, setLoading] = React.useState(false);
+            const [error, setError] = React.useState(null);
+            
+            // 言語メニュー
+            const handleLangClick = (event) => {
+                setLangAnchor(event.currentTarget);
+            };
+            
+            const handleLangClose = () => {
+                setLangAnchor(null);
+            };
+            
+            const changeLanguage = (langCode) => {
+                setLoading(true);
+                setTimeout(() => {
+                    setCurrentLang(langCode);
+                    setLangAnchor(null);
+                    setLoading(false);
+                }, 300);
+            };
+            
+            // ハンバーガーメニュー
+            const toggleDrawer = (open) => (event) => {
+                if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+                    return;
+                }
+                setDrawerOpen(open);
+            };
+            
+            const t = translations[currentLang];
+            
+            // エラーハンドリング
+            React.useEffect(() => {
+                if (error) {
+                    setTimeout(() => setError(null), 3000);
+                }
+            }, [error]);
+            
+            return (
+                <React.Fragment>
+                    <CssBaseline />
+                    
+                    {/* エラー表示 */}
+                    <Snackbar 
+                        open={error !== null} 
+                        autoHideDuration={3000} 
+                        onClose={() => setError(null)}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    >
+                        <Alert severity="error">{error}</Alert>
+                    </Snackbar>
+                    
+                    {/* ローディング表示 */}
+                    {loading && (
+                        <Box sx={{ 
+                            position: 'fixed', 
+                            top: 0, 
+                            left: 0, 
+                            width: '100%', 
+                            height: '100%', 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            justifyContent: 'center',
+                            backgroundColor: 'rgba(255,255,255,0.7)',
+                            zIndex: 9999
+                        }}>
+                            <CircularProgress color="primary" />
+                        </Box>
+                    )}
+                    
+                    {/* ヘッダー */}
+                    <AppBar position="sticky" sx={{ backgroundColor: '#1a1a1a' }}>
+                        <Toolbar>
+                            <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+                                <Typography variant="h6" component="div" sx={{ color: '#d4af37', fontWeight: 'bold' }}>
+                                    夢時
+                                </Typography>
+                            </Box>
+                            
+                            {isMobile ? (
+                                <IconButton
+                                    edge="end"
+                                    color="inherit"
+                                    aria-label="menu"
+                                    onClick={toggleDrawer(true)}
+                                >
+                                    <span className="material-icons">menu</span>
+                                </IconButton>
+                            ) : (
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <Button color="inherit">{t.menu.home}</Button>
+                                    <Button color="inherit">{t.menu.about}</Button>
+                                    <Button color="inherit">{t.menu.courses}</Button>
+                                    <Button color="inherit">{t.menu.schools}</Button>
+                                    <Button color="inherit">{t.menu.teachers}</Button>
+                                    <Button color="inherit">{t.menu.blog}</Button>
+                                    <Button color="inherit">{t.menu.contact}</Button>
+                                    
+                                    <Button 
+                                        color="inherit" 
+                                        onClick={handleLangClick}
+                                        startIcon={<span className="material-icons">language</span>}
+                                    >
+                                        {languages[currentLang].flag}
+                                    </Button>
+                                </Box>
+                            )}
+                            
+                            {/* 言語メニュー */}
+                            <Menu
+                                anchorEl={langAnchor}
+                                open={Boolean(langAnchor)}
+                                onClose={handleLangClose}
+                            >
+                                {Object.values(languages).map((lang) => (
+                                    <MenuItem 
+                                        key={lang.code} 
+                                        onClick={() => changeLanguage(lang.code)}
+                                        selected={currentLang === lang.code}
+                                    >
+                                        {lang.flag} {lang.label}
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                            
+                            {/* モバイルドロワー */}
+                            <Drawer
+                                anchor="right"
+                                open={drawerOpen}
+                                onClose={toggleDrawer(false)}
+                            >
+                                <Box
+                                    sx={{ width: 250 }}
+                                    role="presentation"
+                                    onClick={toggleDrawer(false)}
+                                    onKeyDown={toggleDrawer(false)}
+                                >
+                                    <List>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.home} />
+                                        </ListItem>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.about} />
+                                        </ListItem>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.courses} />
+                                        </ListItem>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.schools} />
+                                        </ListItem>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.teachers} />
+                                        </ListItem>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.blog} />
+                                        </ListItem>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.contact} />
+                                        </ListItem>
+                                        <Divider />
+                                        <ListItem>
+                                            <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                                                言語 / Language
+                                            </Typography>
+                                        </ListItem>
+                                        {Object.values(languages).map((lang) => (
+                                            <ListItem 
+                                                button 
+                                                key={lang.code} 
+                                                onClick={() => changeLanguage(lang.code)}
+                                                selected={currentLang === lang.code}
+                                            >
+                                                <ListItemText primary={`${lang.flag} ${lang.label}`} />
+                                            </ListItem>
+                                        ))}
+                                    </List>
+                                </Box>
+                            </Drawer>
+                        </Toolbar>
+                    </AppBar>
+                    
+                    {/* ヒーローセクション */}
+                    <Box 
+                        sx={{ 
+                            backgroundImage: 'url(https://source.unsplash.com/random/1600x900/?classroom)', 
+                            backgroundSize: 'cover', 
+                            backgroundPosition: 'center',
+                            color: 'white',
+                            position: 'relative'
+                        }}
+                    >
+                        <Box sx={{ 
+                            backgroundColor: 'rgba(0,0,0,0.6)', 
+                            padding: { xs: '60px 20px', md: '120px 20px' },
+                            textAlign: 'center'
+                        }}>
+                            <Container maxWidth="md">
+                                <Typography 
+                                    variant="h3" 
+                                    component="h1" 
+                                    sx={{ 
+                                        fontWeight: 'bold', 
+                                        mb: 2,
+                                        color: '#d4af37'
+                                    }}
+                                    className="fade-in"
+                                >
+                                    {t.hero.title}
+                                </Typography>
+                                <Typography 
+                                    variant="h5" 
+                                    sx={{ mb: 4 }}
+                                    className="slide-up"
+                                >
+                                    {t.hero.subtitle}
+                                </Typography>
+                                <Button 
+                                    variant="contained" 
+                                    size="large"
+                                    sx={{ 
+                                        backgroundColor: '#d4af37',
+                                        '&:hover': {
+                                            backgroundColor: '#b8860b'
+                                        }
+                                    }}
+                                >
+                                    {t.hero.cta}
+                                </Button>
+                            </Container>
+                        </Box>
+                    </Box>
+                    
+                    {/* 特徴セクション */}
+                    <Box sx={{ py: 8 }}>
+                        <Container maxWidth="lg">
+                            <Typography 
+                                variant="h4" 
+                                component="h2" 
+                                sx={{ 
+                                    textAlign: 'center', 
+                                    mb: 1,
+                                    fontWeight: 'bold'
+                                }}
+                            >
+                                {t.features.title}
+                            </Typography>
+                            <Typography 
+                                variant="subtitle1" 
+                                sx={{ 
+                                    textAlign: 'center', 
+                                    mb: 6,
+                                    color: 'text.secondary'
+                                }}
+                            >
+                                {t.features.subtitle}
+                            </Typography>
+                            
+                            <Grid container spacing={4}>
+                                <Grid item xs={12} md={4}>
+                                    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                                        <CardMedia
+                                            component="img"
+                                            height="140"
+                                            image="https://source.unsplash.com/random/300x200/?tutoring"
+                                            alt="1-on-1 tutoring"
+                                        />
+                                        <CardContent sx={{ flexGrow: 1 }}>
+                                            <Typography variant="h6" component="h3" gutterBottom>
+                                                {t.features.feature1.title}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                {t.features.feature1.desc}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                                        <CardMedia
+                                            component="img"
+                                            height="140"
+                                            image="https://source.unsplash.com/random/300x200/?teacher"
+                                            alt="Professional teachers"
+                                        />
+                                        <CardContent sx={{ flexGrow: 1 }}>
+                                            <Typography variant="h6" component="h3" gutterBottom>
+                                                {t.features.feature2.title}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                {t.features.feature2.desc}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                                        <CardMedia
+                                            component="img"
+                                            height="140"
+                                            image="https://source.unsplash.com/random/300x200/?students"
+                                            alt="All ages"
+                                        />
+                                        <CardContent sx={{ flexGrow: 1 }}>
+                                            <Typography variant="h6" component="h3" gutterBottom>
+                                                {t.features.feature3.title}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                {t.features.feature3.desc}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            </Grid>
+                        </Container>
+                    </Box>
+                    
+                    {/* 校舎紹介セクション */}
+                    <Box sx={{ py: 8, backgroundColor: '#f5f5f5' }}>
+                        <Container maxWidth="lg">
+                            <Typography 
+                                variant="h4" 
+                                component="h2" 
+                                sx={{ 
+                                    textAlign: 'center', 
+                                    mb: 6,
+                                    fontWeight: 'bold'
+                                }}
+                            >
+                                {t.schools.title}
+                            </Typography>
+                            
+                            <Grid container spacing={4}>
+                                <Grid item xs={12} md={6}>
+                                    <Card>
+                                        <CardMedia
+                                            component="img"
+                                            height="200"
+                                            image="https://source.unsplash.com/random/600x400/?school,building"
+                                            alt="Takuto Minghu School"
+                                        />
+                                        <CardContent>
+                                            <Typography variant="h5" component="h3" gutterBottom>
+                                                {t.schools.school1.name}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary" gutterBottom>
+                                                {t.schools.school1.address}
+                                            </Typography>
+                                            <Button 
+                                                variant="outlined" 
+                                                sx={{ 
+                                                    mt: 2,
+                                                    borderColor: '#d4af37',
+                                                    color: '#d4af37',
+                                                    '&:hover': {
+                                                        borderColor: '#b8860b',
+                                                        backgroundColor: 'rgba(212, 175, 55, 0.1)'
+                                                    }
+                                                }}
+                                            >
+                                                {t.schools.school1.details}
+                                            </Button>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <Card>
+                                        <CardMedia
+                                            component="img"
+                                            height="200"
+                                            image="https://source.unsplash.com/random/600x400/?university,campus"
+                                            alt="Takuto Neihu Station School"
+                                        />
+                                        <CardContent>
+                                            <Typography variant="h5" component="h3" gutterBottom>
+                                                {t.schools.school2.name}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary" gutterBottom>
+                                                {t.schools.school2.address}
+                                            </Typography>
+                                            <Button 
+                                                variant="outlined" 
+                                                sx={{ 
+                                                    mt: 2,
+                                                    borderColor: '#d4af37',
+                                                    color: '#d4af37',
+                                                    '&:hover': {
+                                                        borderColor: '#b8860b',
+                                                        backgroundColor: 'rgba(212, 175, 55, 0.1)'
+                                                    }
+                                                }}
+                                            >
+                                                {t.schools.school2.details}
+                                            </Button>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            </Grid>
+                        </Container>
+                    </Box>
+                    
+                    {/* ニュースセクション */}
+                    <Box sx={{ py: 8 }}>
+                        <Container maxWidth="lg">
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
+                                <Typography 
+                                    variant="h4" 
+                                    component="h2" 
+                                    sx={{ fontWeight: 'bold' }}
+                                >
+                                    {t.news.title}
+                                </Typography>
+                                <Button 
+                                    variant="text" 
+                                    endIcon={<span className="material-icons">arrow_forward</span>}
+                                    sx={{ color: '#d4af37' }}
+                                >
+                                    {t.news.more}
+                                </Button>
+                            </Box>
+                            
+                            <Grid container spacing={4}>
+                                {newsData.map((news) => (
+                                    <Grid item xs={12} sm={6} md={4} key={news.id}>
+                                        <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                                            <CardMedia
+                                                component="img"
+                                                height="140"
+                                                image={news.image}
+                                                alt={news.title[currentLang]}
+                                            />
+                                            <CardContent sx={{ flexGrow: 1 }}>
+                                                <Typography variant="body2" color="text.secondary" gutterBottom>
+                                                    {new Date(news.date).toLocaleDateString(
+                                                        currentLang === 'zh' ? 'zh-TW' : 
+                                                        currentLang === 'ja' ? 'ja-JP' : 'en-US'
+                                                    )}
+                                                </Typography>
+                                                <Typography variant="h6" component="h3">
+                                                    {news.title[currentLang]}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </Container>
+                    </Box>
+                    
+                    {/* 日本の兄弟会社セクション */}
+                    <Box sx={{ py: 8, backgroundColor: '#1a1a1a', color: 'white' }}>
+                        <Container maxWidth="md">
+                            <Grid container spacing={4} alignItems="center">
+                                <Grid item xs={12} md={6}>
+                                    <Typography 
+                                        variant="h4" 
+                                        component="h2" 
+                                        sx={{ 
+                                            mb: 2,
+                                            color: '#d4af37',
+                                            fontWeight: 'bold'
+                                        }}
+                                    >
+                                        {t.sister.title}
+                                    </Typography>
+                                    <Typography variant="h5" gutterBottom>
+                                        {t.sister.name}
+                                    </Typography>
+                                    <Typography variant="body1" sx={{ mb: 3 }}>
+                                        {t.sister.desc}
+                                    </Typography>
+                                    <Button 
+                                        variant="contained"
+                                        href="http://www.yumetoki.jp"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        sx={{ 
+                                            backgroundColor: '#d4af37',
+                                            '&:hover': {
+                                                backgroundColor: '#b8860b'
+                                            }
+                                        }}
+                                    >
+                                        {t.sister.link}
+                                    </Button>
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <Box
+                                        component="img"
+                                        sx={{
+                                            width: '100%',
+                                            borderRadius: 2,
+                                            boxShadow: 3
+                                        }}
+                                        src="https://source.unsplash.com/random/600x400/?tokyo,ginza"
+                                        alt="Ginza Yumetoki"
+                                    />
+                                </Grid>
+                            </Grid>
+                        </Container>
+                    </Box>
+                    
+                    {/* フッター */}
+                    <Box component="footer" sx={{ py: 6, backgroundColor: '#f5f5f5' }}>
+                        <Container maxWidth="lg">
+                            <Grid container spacing={4}>
+                                <Grid item xs={12} md={4}>
+                                    <Typography variant="h6" sx={{ color: '#1a1a1a', fontWeight: 'bold', mb: 2 }}>
+                                        {t.footer.company}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {t.footer.address}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {t.footer.phone} +886-XXX-XXX-XXX
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {t.footer.email} info@yumetoki.com.tw
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <Typography variant="h6" sx={{ color: '#1a1a1a', fontWeight: 'bold', mb: 2 }}>
+                                        {t.menu.home}
+                                    </Typography>
+                                    <Typography variant="body2" component="p" gutterBottom>
+                                        <a href="#" style={{ color: '#666', textDecoration: 'none' }}>
+                                            {t.menu.about}
+                                        </a>
+                                    </Typography>
+                                    <Typography variant="body2" component="p" gutterBottom>
+                                        <a href="#" style={{ color: '#666', textDecoration: 'none' }}>
+                                            {t.menu.courses}
+                                        </a>
+                                    </Typography>
+                                    <Typography variant="body2" component="p" gutterBottom>
+                                        <a href="#" style={{ color: '#666', textDecoration: 'none' }}>
+                                            {t.menu.schools}
+                                        </a>
+                                    </Typography>
+                                    <Typography variant="body2" component="p" gutterBottom>
+                                        <a href="#" style={{ color: '#666', textDecoration: 'none' }}>
+                                            {t.menu.teachers}
+                                        </a>
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <Typography variant="h6" sx={{ color: '#1a1a1a', fontWeight: 'bold', mb: 2 }}>
+                                        {t.footer.follow}
+                                    </Typography>
+                                    <Box sx={{ display: 'flex', gap: 2 }}>
+                                        <IconButton sx={{ color: '#1877f2' }}>
+                                            <span className="material-icons">facebook</span>
+                                        </IconButton>
+                                        <IconButton sx={{ color: '#1da1f2' }}>
+                                            <span className="material-icons">travel_explore</span>
+                                        </IconButton>
+                                        <IconButton sx={{ color: '#c32aa3' }}>
+                                            <span className="material-icons">photo_camera</span>
+                                        </IconButton>
+                                        <IconButton sx={{ color: '#ff0000' }}>
+                                            <span className="material-icons">smart_display</span>
+                                        </IconButton>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                            <Box sx={{ mt: 4, pt: 3, borderTop: '1px solid #ddd', textAlign: 'center' }}>
+                                <Typography variant="body2" color="text.secondary">
+                                    {t.footer.rights}
+                                </Typography>
+                            </Box>
+                        </Container>
+                    </Box>
+                </React.Fragment>
+            );
+        }
+        
+        // エラーバウンダリ
+        class ErrorBoundary extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { hasError: false };
+            }
+            
+            static getDerivedStateFromError(error) {
+                return { hasError: true };
+            }
+            
+            componentDidCatch(error, errorInfo) {
+                console.error("Error caught by boundary:", error, errorInfo);
+            }
+            
+            render() {
+                if (this.state.hasError) {
+                    return (
+                        <Box sx={{ 
+                            p: 3, 
+                            textAlign: 'center',
+                            height: '100vh',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>
+                            <Typography variant="h4" color="error" gutterBottom>
+                                Something went wrong
+                            </Typography>
+                            <Button 
+                                variant="contained" 
+                                onClick={() => window.location.reload()}
+                            >
+                                Reload Page
+                            </Button>
+                        </Box>
+                    );
+                }
+                
+                return this.props.children;
+            }
+        }
+        
+        // アプリケーションのレンダリング
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(
+            <ErrorBoundary>
+                <App />
+            </ErrorBoundary>
+        );
+    </script>
+</body>
+</html>

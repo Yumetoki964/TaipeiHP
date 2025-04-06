@@ -1,0 +1,38 @@
+# 依存関係
+node_modules/
+package-lock.json
+
+# 環境変数
+.env
+.env.local
+.env.*.local
+
+# ログファイル
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 実行時データ
+data/
+uploads/
+dist/
+build/
+coverage/
+
+# エディタ設定
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS生成ファイル
+.DS_Store
+Thumbs.db
+.directory
+
+# その他
+.npm
+.eslintcache
+.yarn-integrity

@@ -1,0 +1,60 @@
+{
+  "pageTitle": "課程介紹",
+  "metaDescription": "夢時商業股份有限公司提供的各種教育課程介紹。從小學生到成人的一對一輔導計劃。",
+  "title": "課程介紹",
+  "subtitle": "針對每位學生量身定制的一對一輔導計劃",
+  "overview": "夢時商業股份有限公司為小學生至高中生、大學生和職場專業人士提供多樣化的教育計劃。每個課程都根據學生的個別需求和學習風格量身定制，通過一對一輔導實現最大的學習效果。",
+  
+  "ageGroupsTitle": "目標年齡層",
+  "ageGroups": {
+    "elementary": {
+      "title": "小學生",
+      "age": "6-12歲",
+      "description": "注重提高基礎學術能力和建立學習習慣，在有趣且吸引人的環境中學習。"
+    },
+    "junior": {
+      "title": "國中生",
+      "age": "12-15歲",
+      "description": "專注於準備基本學力測驗和提高學校成績，提供系統化的學習支持。"
+    },
+    "high": {
+      "title": "高中生",
+      "age": "15-18歲",
+      "description": "支持大學入學考試準備和高級學習技能的獲取，為未來職業做準備。"
+    },
+    "adult": {
+      "title": "大學生及成人",
+      "age": "18歲以上",
+      "description": "根據特定目標提供學習支持，如提高語言技能或職業發展所需的專業知識。"
+    }
+  },
+  
+  "courseList": "可選課程",
+  "noCourses": "目前沒有可用的課程。",
+  "courseDescription": "課程描述",
+  "features": "課程特色",
+  "pricing": "課程費用",
+  "pricingNote": "※價格僅供參考。詳情請聯繫各校區。",
+  "pricingContactUs": "請聯繫我們獲取詳細的價格信息。",
+  "contactInfo": "聯絡資訊",
+  "contactDescription": "如果您對課程詳情或價格有任何疑問，請隨時與我們聯繫。",
+  "targetAge": "適合年齡",
+  
+  "trialLesson": {
+    "title": "免費體驗課程",
+    "description": "您想親身體驗夢時商業股份有限公司的教育計劃嗎？我們的免費體驗課程讓您直接體驗我們的教學方法和一對一指導的品質。",
+    "benefits": {
+      "title": "體驗課程優勢",
+      "benefit1": "由經驗豐富的教師提供一對一指導",
+      "benefit2": "詳細評估學習水平和目標",
+      "benefit3": "提供學習計劃建議和教育建議"
+    },
+    "cta": "預約體驗課程"
+  },
+  
+  "errors": {
+    "fetchFailed": "無法獲取課程信息。",
+    "detailsFailed": "無法獲取課程詳情。",
+    "courseNotFound": "找不到課程。"
+  }
+}

@@ -1,0 +1,11 @@
+# すべてのボットに対して
+User-agent: *
+# サイトマップファイルのパス
+Sitemap: https://www.yumetoki.com.tw/sitemap.xml
+# 検索エンジンをブロックしたくないファイルがあればここに指定
+Allow: /
+
+# 検索エンジンにインデックスしてほしくないパス
+Disallow: /admin/
+Disallow: /api/
+Disallow: /temp/

@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校舍介紹 - 夢時商業股份有限公司</title>
+    <!-- React, ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Material UI -->
+    <script src="https://unpkg.com/@mui/material@5.14.18/umd/material-ui.production.min.js"></script>
+    <script src="https://unpkg.com/@emotion/react@11.11.1/dist/emotion-react.umd.min.js"></script>
+    <script src="https://unpkg.com/@emotion/styled@11.11.0/dist/emotion-styled.umd.min.js"></script>
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .gold-text {
+            color: #d4af37;
+        }
+        
+        .dark-bg {
+            background-color: #1a1a1a;
+            color: white;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { 
+            AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem, 
+            Card, CardContent, CardMedia, CardActions, Grid, Container, Box, Paper, Divider,
+            Drawer, List, ListItem, ListItemIcon, ListItemText, CircularProgress,
+            Snackbar, Alert, CssBaseline, useMediaQuery, useTheme, Tabs, Tab,
+            Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions,
+            Accordion, AccordionSummary, AccordionDetails, ImageList, ImageListItem
+        } = MaterialUI;
+        
+        // 言語データ
+        const languages = {
+            'zh': { code: 'zh', label: '繁體中文', flag: '🇹🇼' },
+            'ja': { code: 'ja', label: '日本語', flag: '🇯🇵' },
+            'en': { code: 'en', label: 'English', flag: '🇺🇸' }
+        };
+        
+        // 多言語対応テキスト
+        const translations = {
+            zh: {
+                menu: {
+                    home: '首頁',
+                    about: '關於我們',
+                    courses: '課程介紹',
+                    schools: '校舍介紹',
+                    teachers: '師資介紹',
+                    faq: '常見問題',
+                    blog: '教育專欄',
+                    contact: '聯絡我們'
+                },
+                schools: {
+                    title: '校舍介紹',
+                    subtitle: '為學生提供舒適學習環境的夢時教育校舍',
+                    overview: '夢時教育在台北市內湖區設有兩所校舍，每個校舍都配備現代化的設施，為學生提供最佳的1對1學習環境。我們的教室明亮寬敞，有利於學生專注學習。',
+                    minghu: {
+                        name: '拓人明湖校',
+                        address: '台北市內湖區康寧路三段189巷21弄8號1樓',
+                        phone: '+886 2 2631 7339',
+                        features: '設施與特色',
+                        feature1: '個別化學習隔間，提供專注學習環境',
+                        feature2: '溫馨的接待區，展示世界地圖強調國際視野',
+                        feature3: '舒適明亮的個人學習空間',
+                        feature4: '便利的交通位置，鄰近社區',
+                        hours: '營業時間',
+                        weekdays: '週一至週五: 14:00 - 21:00',
+                        weekends: '週六至週日: 9:00 - 18:00',
+                        access: '交通方式',
+                        directions: '從內湖捷運站步行約10分鐘，或搭乘公車至康寧路站下車。',
+                        viewMap: '查看地圖',
+                        photoGallery: '校舍照片',
+                        photo1: '個別學習空間',
+                        photo2: '接待區與世界地圖',
+                        photo3: '校舍外觀'
+                    },
+                    neihu: {
+                        name: '拓人內湖站前校',
+                        address: '台北市內湖區內湖路二段351號1樓',
+                        phone: '+886 2 2790 3772',
+                        features: '設施與特色',
+                        feature1: '真正的1對1個人化指導',
+                        feature2: '位於捷運站附近的便利位置',
+                        feature3: '專業教師提供直接、高效的學習支持',
+                        feature4: '適合所有年齡層的學生',
+                        hours: '營業時間',
+                        weekdays: '週一至週五: 14:00 - 21:00',
+                        weekends: '週六至週日: 9:00 - 18:00',
+                        access: '交通方式',
+                        directions: '位於內湖捷運站1號出口正對面，交通非常便利。',
+                        viewMap: '查看地圖',
+                        photoGallery: '校舍照片',
+                        photo1: '1對1指導實況'
+                    },
+                    visit: '預約參觀',
+                    visitText: '歡迎預約參觀我們的校舍，了解更多關於我們的教學環境和方法。',
+                    contactBtn: '聯絡我們',
+                    photoTitle: '校舍環境'
+                },
+                footer: {
+                    company: '夢時商業股份有限公司',
+                    rights: '© 2023 所有權利保留',
+                    address: '台北市內湖區',
+                    phone: '電話：',
+                    email: '電子郵件：',
+                    follow: '關注我們：'
+                }
+            },
+            ja: {
+                menu: {
+                    home: 'ホーム',
+                    about: '私たちについて',
+                    courses: 'コース紹介',
+                    schools: '校舎紹介',
+                    teachers: '講師紹介',
+                    faq: 'よくある質問',
+                    blog: 'ブログ',
+                    contact: 'お問い合わせ'
+                },
+                schools: {
+                    title: '校舎紹介',
+                    subtitle: '生徒に快適な学習環境を提供する夢時教育の校舎',
+                    overview: '夢時教育は台北市内湖区に2つの校舎を設けており、各校舎は現代的な設備を備え、生徒に最適な1対1の学習環境を提供しています。教室は明るく広々としており、生徒が集中して学習できるよう設計されています。',
+                    minghu: {
+                        name: '拓人明湖校',
+                        address: '台北市内湖区康寧路三段189巷21弄8号1階',
+                        phone: '+886 2 2631 7339',
+                        features: '施設と特徴',
+                        feature1: '個別学習ブースによる集中できる環境',
+                        feature2: '世界地図を展示した温かみのある受付エリア',
+                        feature3: '快適で明るい個人学習スペース',
+                        feature4: '便利なアクセスの良い立地',
+                        hours: '営業時間',
+                        weekdays: '月曜〜金曜: 14:00 - 21:00',
+                        weekends: '土曜・日曜: 9:00 - 18:00',
+                        access: 'アクセス方法',
+                        directions: '内湖駅から徒歩約10分、または康寧路バス停で下車。',
+                        viewMap: '地図を見る',
+                        photoGallery: '校舎の写真',
+                        photo1: '個別学習スペース',
+                        photo2: '受付エリアと世界地図',
+                        photo3: '校舎外観'
+                    },
+                    neihu: {
+                        name: '拓人内湖駅前校',
+                        address: '台北市内湖区内湖路二段351号1階',
+                        phone: '+886 2 2790 3772',
+                        features: '施設と特徴',
+                        feature1: '真の1対1の個別指導',
+                        feature2: '駅近の便利な立地',
+                        feature3: 'プロの教師による直接的で効果的な学習サポート',
+                        feature4: 'すべての年齢層の生徒に対応',
+                        hours: '営業時間',
+                        weekdays: '月曜〜金曜: 14:00 - 21:00',
+                        weekends: '土曜・日曜: 9:00 - 18:00',
+                        access: 'アクセス方法',
+                        directions: '内湖駅1番出口の正面にあり、非常に便利なロケーションです。',
+                        viewMap: '地図を見る',
+                        photoGallery: '校舎の写真',
+                        photo1: '1対1指導の様子'
+                    },
+                    visit: '見学予約',
+                    visitText: '校舎の見学予約を歓迎します。私たちの教育環境や指導方法についてさらに詳しく知ることができます。',
+                    contactBtn: 'お問い合わせ',
+                    photoTitle: '校舎環境'
+                },
+                footer: {
+                    company: '夢時商業股份有限公司',
+                    rights: '© 2023 All Rights Reserved',
+                    address: '台北市内湖区',
+                    phone: '電話：',
+                    email: 'メール：',
+                    follow: 'フォローする：'
+                }
+            },
+            en: {
+                menu: {
+                    home: 'Home',
+                    about: 'About Us',
+                    courses: 'Courses',
+                    schools: 'Schools',
+                    teachers: 'Teachers',
+                    faq: 'FAQ',
+                    blog: 'Blog',
+                    contact: 'Contact'
+                },
+                schools: {
+                    title: 'Our Schools',
+                    subtitle: 'Yumetoki Education schools providing comfortable learning environments for students',
+                    overview: 'Yumetoki Education has two schools in the Neihu District of Taipei, each equipped with modern facilities to provide the best 1-on-1 learning environment for students. Our classrooms are bright and spacious, conducive to focused learning.',
+                    minghu: {
+                        name: 'Takuto Minghu School',
+                        address: '1F, No. 8, Alley 21, Lane 189, Section 3, Kangning Road, Neihu District, Taipei City',
+                        phone: '+886 2 2631 7339',
+                        features: 'Facilities & Features',
+                        feature1: 'Individual learning partitions for focused study',
+                        feature2: 'Welcoming reception area with world map emphasizing global perspective',
+                        feature3: 'Comfortable and bright personal learning spaces',
+                        feature4: 'Convenient location with easy access',
+                        hours: 'Opening Hours',
+                        weekdays: 'Monday to Friday: 14:00 - 21:00',
+                        weekends: 'Saturday & Sunday: 9:00 - 18:00',
+                        access: 'Access',
+                        directions: 'About 10 minutes walk from Neihu MRT Station, or take a bus to Kangning Road Station.',
+                        viewMap: 'View Map',
+                        photoGallery: 'School Photos',
+                        photo1: 'Individual Learning Space',
+                        photo2: 'Reception Area with World Map',
+                        photo3: 'School Exterior'
+                    },
+                    neihu: {
+                        name: 'Takuto Neihu Station School',
+                        address: '1F, No. 351, Section 2, Neihu Road, Neihu District, Taipei City',
+                        phone: '+886 2 2790 3772',
+                        features: 'Facilities & Features',
+                        feature1: 'True 1-on-1 personalized tutoring',
+                        feature2: 'Convenient location near the MRT station',
+                        feature3: 'Professional teachers providing direct, effective learning support',
+                        feature4: 'Suitable for students of all ages',
+                        hours: 'Opening Hours',
+                        weekdays: 'Monday to Friday: 14:00 - 21:00',
+                        weekends: 'Saturday & Sunday: 9:00 - 18:00',
+                        access: 'Access',
+                        directions: 'Located directly opposite Exit 1 of Neihu MRT Station, very convenient for transportation.',
+                        viewMap: 'View Map',
+                        photoGallery: 'School Photos',
+                        photo1: '1-on-1 Tutoring in Action'
+                    },
+                    visit: 'Schedule a Visit',
+                    visitText: 'You are welcome to schedule a visit to our schools to learn more about our teaching environment and methods.',
+                    contactBtn: 'Contact Us',
+                    photoTitle: 'School Environment'
+                },
+                footer: {
+                    company: 'Yumetoki Commercial Co., Ltd.',
+                    rights: '© 2023 All Rights Reserved',
+                    address: 'Neihu District, Taipei',
+                    phone: 'Phone: ',
+                    email: 'Email: ',
+                    follow: 'Follow Us: '
+                }
+            }
+        };
+        
+        // 校舎のモックデータ - 実際の写真を使用
+        const schoolsData = [
+            {
+                id: 'minghu',
+                images: [
+                    // 実際の写真へのパスに置き換えられます - モックでは説明文を追加
+                    '/assets/images/minghu_study_booth.jpg', // 学習ブースの写真
+                    '/assets/images/minghu_reception.jpg',   // 受付/世界地図の写真
+                    '/assets/images/minghu_exterior.jpg'     // 校舎外観の写真
+                ],
+                imageDescriptions: {
+                    zh: ['個別學習空間，提供專注的學習環境', '接待區與世界地圖，展現國際視野', '拓人明湖校外觀'],
+                    ja: ['集中できる個別学習ブース', '世界地図のある受付エリア', '拓人明湖校の外観'],
+                    en: ['Individual study booths for focused learning', 'Reception area with world map', 'Takuto Minghu School exterior']
+                },
+                mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.1738858325117!2d121.596945!3d25.070378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac7bce656dbb%3A0x73bc5379ce8a5ab4!2sNo.%208%2C%20Alley%2021%2C%20Lane%20189%2C%20Section%203%2C%20Kangning%20Rd%2C%20Neihu%20District%2C%20Taipei%20City%2C%20Taiwan%20114!5e0!3m2!1sen!2s!4v1637903982548!5m2!1sen!2s'
+            },
+            {
+                id: 'neihu',
+                images: [
+                    // 実際の写真へのパスに置き換えられます
+                    '/assets/images/neihu_tutoring.jpg'  // 1対1指導の写真
+                ],
+                imageDescriptions: {
+                    zh: ['實際的1對1指導現場，教師與學生一起學習'],
+                    ja: ['実際の1対1指導の様子、教師と生徒が一緒に学習'],
+                    en: ['Actual 1-on-1 tutoring session with teacher and student']
+                },
+                mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.3851231147024!2d121.59364!3d25.064722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac1a46bc3179%3A0xaa26331addac7f6!2sNo.%20351%2C%20Section%202%2C%20Neihu%20Rd%2C%20Neihu%20District%2C%20Taipei%20City%2C%20Taiwan%20114!5e0!3m2!1sen!2s!4v1637904102548!5m2!1sen!2s'
+            }
+        ];
+        
+        // メインアプリケーション
+        function App() {
+            const theme = useTheme();
+            const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+            const [currentLang, setCurrentLang] = React.useState('zh');
+            const [langAnchor, setLangAnchor] = React.useState(null);
+            const [drawerOpen, setDrawerOpen] = React.useState(false);
+            const [loading, setLoading] = React.useState(false);
+            const [error, setError] = React.useState(null);
+            const [visitDialogOpen, setVisitDialogOpen] = React.useState(false);
+            const [currentTab, setCurrentTab] = React.useState(0);
+            const [imageDialogOpen, setImageDialogOpen] = React.useState(false);
+            const [selectedImage, setSelectedImage] = React.useState(null);
+            
+            // 言語メニュー
+            const handleLangClick = (event) => {
+                setLangAnchor(event.currentTarget);
+            };
+            
+            const handleLangClose = () => {
+                setLangAnchor(null);
+            };
+            
+            const changeLanguage = (langCode) => {
+                setLoading(true);
+                setTimeout(() => {
+                    setCurrentLang(langCode);
+                    setLangAnchor(null);
+                    setLoading(false);
+                }, 300);
+            };
+            
+            // ハンバーガーメニュー
+            const toggleDrawer = (open) => (event) => {
+                if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+                    return;
+                }
+                setDrawerOpen(open);
+            };
+            
+            // 校舎のタブ切り替え
+            const handleTabChange = (event, newValue) => {
+                setCurrentTab(newValue);
+            };
+            
+            // 画像ダイアログ
+            const handleImageClick = (image, description) => {
+                setSelectedImage({url: image, description: description});
+                setImageDialogOpen(true);
+            };
+            
+            const handleImageDialogClose = () => {
+                setImageDialogOpen(false);
+            };
+            
+            // 予約ダイアログ
+            const handleVisitDialogOpen = () => {
+                setVisitDialogOpen(true);
+            };
+            
+            const handleVisitDialogClose = () => {
+                setVisitDialogOpen(false);
+            };
+            
+            const t = translations[currentLang];
+            
+            // エラーハンドリング
+            React.useEffect(() => {
+                if (error) {
+                    setTimeout(() => setError(null), 3000);
+                }
+            }, [error]);
+            
+            return (
+                <React.Fragment>
+                    <CssBaseline />
+                    
+                    {/* エラー表示 */}
+                    <Snackbar 
+                        open={error !== null} 
+                        autoHideDuration={3000} 
+                        onClose={() => setError(null)}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    >
+                        <Alert severity="error">{error}</Alert>
+                    </Snackbar>
+                    
+                    {/* ローディング表示 */}
+                    {loading && (
+                        <Box sx={{ 
+                            position: 'fixed', 
+                            top: 0, 
+                            left: 0, 
+                            width: '100%', 
+                            height: '100%', 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            justifyContent: 'center',
+                            backgroundColor: 'rgba(255,255,255,0.7)',
+                            zIndex: 9999
+                        }}>
+                            <CircularProgress color="primary" />
+                        </Box>
+                    )}
+                    
+                    {/* ヘッダー */}
+                    <AppBar position="sticky" sx={{ backgroundColor: '#1a1a1a' }}>
+                        <Toolbar>
+                            <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+                                <Typography variant="h6" component="div" sx={{ color: '#d4af37', fontWeight: 'bold' }}>
+                                    夢時
+                                </Typography>
+                            </Box>
+                            
+                            {isMobile ? (
+                                <IconButton
+                                    edge="end"
+                                    color="inherit"
+                                    aria-label="menu"
+                                    onClick={toggleDrawer(true)}
+                                >
+                                    <span className="material-icons">menu</span>
+                                </IconButton>
+                            ) : (
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <Button color="inherit" href="index.html">{t.menu.home}</Button>
+                                    <Button color="inherit">{t.menu.about}</Button>
+                                    <Button color="inherit">{t.menu.courses}</Button>
+                                    <Button color="inherit" sx={{ borderBottom: '2px solid #d4af37' }}>{t.menu.schools}</Button>
+                                    <Button color="inherit">{t.menu.teachers}</Button>
+                                    <Button color="inherit">{t.menu.blog}</Button>
+                                    <Button color="inherit">{t.menu.contact}</Button>
+                                    
+                                    <Button 
+                                        color="inherit" 
+                                        onClick={handleLangClick}
+                                        startIcon={<span className="material-icons">language</span>}
+                                    >
+                                        {languages[currentLang].flag}
+                                    </Button>
+                                </Box>
+                            )}
+                            
+                            {/* 言語メニュー */}
+                            <Menu
+                                anchorEl={langAnchor}
+                                open={Boolean(langAnchor)}
+                                onClose={handleLangClose}
+                            >
+                                {Object.values(languages).map((lang) => (
+                                    <MenuItem 
+                                        key={lang.code} 
+                                        onClick={() => changeLanguage(lang.code)}
+                                        selected={currentLang === lang.code}
+                                    >
+                                        {lang.flag} {lang.label}
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                            
+                            {/* モバイルドロワー */}
+                            <Drawer
+                                anchor="right"
+                                open={drawerOpen}
+                                onClose={toggleDrawer(false)}
+                            >
+                                <Box
+                                    sx={{ width: 250 }}
+                                    role="presentation"
+                                    onClick={toggleDrawer(false)}
+                                    onKeyDown={toggleDrawer(false)}
+                                >
+                                    <List>
+                                        <ListItem button component="a" href="index.html">
+                                            <ListItemText primary={t.menu.home} />
+                                        </ListItem>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.about} />
+                                        </ListItem>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.courses} />
+                                        </ListItem>
+                                        <ListItem button selected>
+                                            <ListItemText primary={t.menu.schools} />
+                                        </ListItem>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.teachers} />
+                                        </ListItem>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.blog} />
+                                        </ListItem>
+                                        <ListItem button>
+                                            <ListItemText primary={t.menu.contact} />
+                                        </ListItem>
+                                        <Divider />
+                                        <ListItem>
+                                            <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                                                言語 / Language
+                                            </Typography>
+                                        </ListItem>
+                                        {Object.values(languages).map((lang) => (
+                                            <ListItem 
+                                                button 
+                                                key={lang.code} 
+                                                onClick={() => changeLanguage(lang.code)}
+                                                selected={currentLang === lang.code}
+                                            >
+                                                <ListItemText primary={`${lang.flag} ${lang.label}`} />
+                                            </ListItem>
+                                        ))}
+                                    </List>
+                                </Box>
+                            </Drawer>
+                        </Toolbar>
+                    </AppBar>
+                    
+                    {/* ページヘッダー */}
+                    <Box 
+                        sx={{ 
+                            bgcolor: '#1a1a1a', 
+                            color: 'white',
+                            py: { xs: 4, md: 6 }
+                        }}
+                    >
+                        <Container maxWidth="lg">
+                            <Typography 
+                                variant="h3" 
+                                component="h1" 
+                                sx={{ 
+                                    textAlign: 'center',
+                                    fontWeight: 'bold',
+                                    color: '#d4af37'
+                                }}
+                                className="fade-in"
+                            >
+                                {t.schools.title}
+                            </Typography>
+                            <Typography 
+                                variant="h6" 
+                                sx={{ 
+                                    textAlign: 'center',
+                                    mt: 2
+                                }}
+                                className="slide-up"
+                            >
+                                {t.schools.subtitle}
+                            </Typography>
+                        </Container>
+                    </Box>
+                    
+                    {/* 概要セクション */}
+                    <Container maxWidth="lg" sx={{ my: 6 }}>
+                        <Typography variant="body1" sx={{ textAlign: 'center', mb: 6 }}>
+                            {t.schools.overview}
+                        </Typography>
+                        
+                        {/* タブセクション（モバイルビュー） */}
+                        <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+                            <Tabs 
+                                value={currentTab} 
+                                onChange={handleTabChange} 
+                                indicatorColor="primary"
+                                textColor="primary"
+                                variant="fullWidth"
+                                sx={{ 
+                                    mb: 3,
+                                    '& .MuiTab-root': { 
+                                        fontWeight: 'bold',
+                                        color: '#666'
+                                    },
+                                    '& .Mui-selected': { 
+                                        color: '#d4af37' 
+                                    },
+                                    '& .MuiTabs-indicator': { 
+                                        backgroundColor: '#d4af37' 
+                                    }
+                                }}
+                            >
+                                <Tab label={t.schools.minghu.name} />
+                                <Tab label={t.schools.neihu.name} />
+                            </Tabs>
+                            
+                            {/* 明湖校 (モバイル) */}
+                            <Box hidden={currentTab !== 0}>
+                                <SchoolDetailCard 
+                                    school={schoolsData[0]}
+                                    schoolInfo={t.schools.minghu}
+                                    currentLang={currentLang}
+                                    onImageClick={handleImageClick}
+                                />
+                            </Box>
+                            
+                            {/* 内湖駅前校 (モバイル) */}
+                            <Box hidden={currentTab !== 1}>
+                                <SchoolDetailCard 
+                                    school={schoolsData[1]}
+                                    schoolInfo={t.schools.neihu}
+                                    currentLang={currentLang}
+                                    onImageClick={handleImageClick}
+                                />
+                            </Box>
+                        </Box>
+                        
+                        {/* デスクトップビュー */}
+                        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                            <Grid container spacing={4}>
+                                <Grid item xs={12} md={6}>
+                                    <SchoolDetailCard 
+                                        school={schoolsData[0]}
+                                        schoolInfo={t.schools.minghu}
+                                        currentLang={currentLang}
+                                        onImageClick={handleImageClick}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <SchoolDetailCard 
+                                        school={schoolsData[1]}
+                                        schoolInfo={t.schools.neihu}
+                                        currentLang={currentLang}
+                                        onImageClick={handleImageClick}
+                                    />
+                                </Grid>
+                            </Grid>
+                        </Box>
+                    </Container>
+                    
+                    {/* 参観予約セクション */}
+                    <Box sx={{ bgcolor: '#f5f5f5', py: 6 }}>
+                        <Container maxWidth="md">
+                            <Grid container spacing={4} alignItems="center">
+                                <Grid item xs={12} md={7}>
+                                    <Typography variant="h4" component="h2" sx={{ fontWeight: 'bold', mb: 2 }}>
+                                        {t.schools.visit}
+                                    </Typography>
+                                    <Typography variant="body1" sx={{ mb: 3 }}>
+                                        {t.schools.visitText}
+                                    </Typography>
+                                    <Button 
+                                        variant="contained" 
+                                        size="large"
+                                        sx={{ 
+                                            backgroundColor: '#d4af37',
+                                            '&:hover': {
+                                                backgroundColor: '#b8860b'
+                                            }
+                                        }}
+                                        onClick={handleVisitDialogOpen}
+                                    >
+                                        {t.schools.contactBtn}
+                                    </Button>
+                                </Grid>
+                                <Grid item xs={12} md={5}>
+                                    {/* ここに実際の写真を使用 */}
+                                    <Box
+                                        component="img"
+                                        sx={{
+                                            width: '100%',
+                                            borderRadius: 2,
+                                            boxShadow: 3
+                                        }}
+                                        src={schoolsData[0].images[0]}
+                                        alt="Study environment"
+                                    />
+                                </Grid>
+                            </Grid>
+                        </Container>
+                    </Box>
+                    
+                    {/* 画像拡大ダイアログ */}
+                    <Dialog 
+                        open={imageDialogOpen} 
+                        onClose={handleImageDialogClose}
+                        maxWidth="md"
+                        fullWidth
+                    >
+                        {selectedImage && (
+                            <>
+                                <DialogContent>
+                                    <Box
+                                        component="img"
+                                        sx={{
+                                            width: '100%',
+                                            height: 'auto',
+                                            display: 'block'
+                                        }}
+                                        src={selectedImage.url}
+                                        alt={selectedImage.description}
+                                    />
+                                    <Typography variant="body2" sx={{ mt: 2, textAlign: 'center' }}>
+                                        {selectedImage.description}
+                                    </Typography>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleImageDialogClose} color="primary">
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </>
+                        )}
+                    </Dialog>
+                    
+                    {/* 参観予約ダイアログ */}
+                    <Dialog open={visitDialogOpen} onClose={handleVisitDialogClose}>
+                        <DialogTitle>{t.schools.visit}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText sx={{ mb: 3 }}>
+                                {t.schools.visitText}
+                            </DialogContentText>
+                            <Typography variant="body1" gutterBottom>
+                                {t.schools.minghu.name}: {t.schools.minghu.phone}
+                            </Typography>
+                            <Typography variant="body1" gutterBottom>
+                                {t.schools.neihu.name}: {t.schools.neihu.phone}
+                            </Typography>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleVisitDialogClose} color="primary">
+                                Close
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                    
+                    {/* フッター */}
+                    <Box component="footer" sx={{ py: 6, backgroundColor: '#f5f5f5' }}>
+                        <Container maxWidth="lg">
+                            <Grid container spacing={4}>
+                                <Grid item xs={12} md={4}>
+                                    <Typography variant="h6" sx={{ color: '#1a1a1a', fontWeight: 'bold', mb: 2 }}>
+                                        {t.footer.company}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {t.footer.address}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {t.footer.phone}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary" gutterBottom>
+                                        {t.schools.minghu.name}: {t.schools.minghu.phone}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {t.schools.neihu.name}: {t.schools.neihu.phone}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <Typography variant="h6" sx={{ color: '#1a1a1a', fontWeight: 'bold', mb: 2 }}>
+                                        {t.menu.home}
+                                    </Typography>
+                                    <Typography variant="body2" component="p" gutterBottom>
+                                        <a href="#" style={{ color: '#666', textDecoration: 'none' }}>
+                                            {t.menu.about}
+                                        </a>
+                                    </Typography>
+                                    <Typography variant="body2" component="p" gutterBottom>
+                                        <a href="#" style={{ color: '#666', textDecoration: 'none' }}>
+                                            {t.menu.courses}
+                                        </a>
+                                    </Typography>
+                                    <Typography variant="body2" component="p" gutterBottom>
+                                        <a href="#" style={{ color: '#666', textDecoration: 'none' }}>
+                                            {t.menu.schools}
+                                        </a>
+                                    </Typography>
+                                    <Typography variant="body2" component="p" gutterBottom>
+                                        <a href="#" style={{ color: '#666', textDecoration: 'none' }}>
+                                            {t.menu.teachers}
+                                        </a>
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <Typography variant="h6" sx={{ color: '#1a1a1a', fontWeight: 'bold', mb: 2 }}>
+                                        {t.footer.follow}
+                                    </Typography>
+                                    <Box sx={{ display: 'flex', gap: 2 }}>
+                                        <IconButton sx={{ color: '#1877f2' }}>
+                                            <span className="material-icons">facebook</span>
+                                        </IconButton>
+                                        <IconButton sx={{ color: '#1da1f2' }}>
+                                            <span className="material-icons">travel_explore</span>
+                                        </IconButton>
+                                        <IconButton sx={{ color: '#c32aa3' }}>
+                                            <span className="material-icons">photo_camera</span>
+                                        </IconButton>
+                                        <IconButton sx={{ color: '#ff0000' }}>
+                                            <span className="material-icons">smart_display</span>
+                                        </IconButton>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                            <Box sx={{ mt: 4, pt: 3, borderTop: '1px solid #ddd', textAlign: 'center' }}>
+                                <Typography variant="body2" color="text.secondary">
+                                    {t.footer.rights}
+                                </Typography>
+                            </Box>
+                        </Container>
+                    </Box>
+                </React.Fragment>
+            );
+        }
+        
+        // 校舎詳細カードコンポーネント - 実際の写真を使用
+        function SchoolDetailCard({ school, schoolInfo, currentLang, onImageClick }) {
+            const [expanded, setExpanded] = React.useState(false);
+            
+            const handleExpandClick = () => {
+                setExpanded(!expanded);
+            };
+            
+            return (
+                <Card sx={{ mb: 4, overflow: 'visible' }}>
+                    <CardContent>
+                        <Typography variant="h4" component="h2" gutterBottom sx={{ color: '#d4af37', fontWeight: 'bold' }}>
+                            {schoolInfo.name}
+                        </Typography>
+                        
+                        <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                            <span className="material-icons" style={{ marginRight: '8px', color: '#666' }}>place</span>
+                            {schoolInfo.address}
+                        </Typography>
+                        <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                            <span className="material-icons" style={{ marginRight: '8px', color: '#666' }}>phone</span>
+                            {schoolInfo.phone}
+                        </Typography>
+                        
+                        {/* 写真ギャラリー */}
+                        <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
+                            {schoolInfo.photoGallery}
+                        </Typography>
+                        
+                        <ImageList cols={school.images.length > 2 ? 3 : (school.images.length > 1 ? 2 : 1)} gap={8}>
+                            {school.images.map((img, index) => (
+                                <ImageListItem 
+                                    key={index}
+                                    onClick={() => onImageClick(img, school.imageDescriptions[currentLang][index])}
+                                    sx={{ 
+                                        cursor: 'pointer',
+                                        '&:hover': {
+                                            opacity: 0.9,
+                                            transform: 'scale(1.02)',
+                                            transition: 'all 0.3s ease'
+                                        }
+                                    }}
+                                >
+                                    <img
+                                        src={img}
+                                        alt={school.imageDescriptions[currentLang][index]}
+                                        loading="lazy"
+                                        style={{ 
+                                            height: '200px', 
+                                            width: '100%', 
+                                            objectFit: 'cover', 
+                                            borderRadius: '4px' 
+                                        }}
+                                    />
+                                    <Typography variant="caption" sx={{ mt: 1, display: 'block', textAlign: 'center' }}>
+                                        {school.imageDescriptions[currentLang][index]}
+                                    </Typography>
+                                </ImageListItem>
+                            ))}
+                        </ImageList>
+                        
+                        {/* 特徴 */}
+                        <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
+                            {schoolInfo.features}
+                        </Typography>
+                        <Grid container spacing={2} sx={{ mb: 3 }}>
+                            <Grid item xs={12} sm={6}>
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <span className="material-icons" style={{ marginRight: '8px', color: '#d4af37' }}>check_circle</span>
+                                    <Typography variant="body2">{schoolInfo.feature1}</Typography>
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <span className="material-icons" style={{ marginRight: '8px', color: '#d4af37' }}>check_circle</span>
+                                    <Typography variant="body2">{schoolInfo.feature2}</Typography>
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <span className="material-icons" style={{ marginRight: '8px', color: '#d4af37' }}>check_circle</span>
+                                    <Typography variant="body2">{schoolInfo.feature3}</Typography>
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <span className="material-icons" style={{ marginRight: '8px', color: '#d4af37' }}>check_circle</span>
+                                    <Typography variant="body2">{schoolInfo.feature4}</Typography>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                        
+                        {/* 営業時間 */}
+                        <Typography variant="h6" gutterBottom>
+                            {schoolInfo.hours}
+                        </Typography>
+                        <Box sx={{ mb: 3 }}>
+                            <Typography variant="body2" gutterBottom>
+                                {schoolInfo.weekdays}
+                            </Typography>
+                            <Typography variant="body2">
+                                {schoolInfo.weekends}
+                            </Typography>
+                        </Box>
+                        
+                        {/* アクセス */}
+                        <Typography variant="h6" gutterBottom>
+                            {schoolInfo.access}
+                        </Typography>
+                        <Typography variant="body2" sx={{ mb: 2 }}>
+                            {schoolInfo.directions}
+                        </Typography>
+                        
+                        <Button 
+                            variant="outlined" 
+                            size="small"
+                            endIcon={<span className="material-icons">expand_more</span>}
+                            onClick={handleExpandClick}
+                            sx={{ 
+                                borderColor: '#d4af37',
+                                color: '#d4af37',
+                                '&:hover': {
+                                    borderColor: '#b8860b',
+                                    backgroundColor: 'rgba(212, 175, 55, 0.1)'
+                                }
+                            }}
+                        >
+                            {schoolInfo.viewMap}
+                        </Button>
+                    </CardContent>
+                    
+                    {/* 地図（展開可能） */}
+                    <Box sx={{ 
+                        height: expanded ? 'auto' : 0, 
+                        overflow: 'hidden',
+                        transition: 'height 0.3s ease'
+                    }}>
+                        <Box sx={{ p: 2 }}>
+                            <iframe 
+                                src={school.mapUrl} 
+                                width="100%" 
+                                height="300" 
+                                style={{ border: 0 }} 
+                                allowFullScreen="" 
+                                loading="lazy"
+                                title={`Map to ${schoolInfo.name}`}
+                            ></iframe>
+                        </Box>
+                    </Box>
+                </Card>
+            );
+        }
+        
+        // エラーバウンダリ
+        class ErrorBoundary extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { hasError: false };
+            }
+            
+            static getDerivedStateFromError(error) {
+                return { hasError: true };
+            }
+            
+            componentDidCatch(error, errorInfo) {
+                console.error("Error caught by boundary:", error, errorInfo);
+            }
+            
+            render() {
+                if (this.state.hasError) {
+                    return (
+                        <Box sx={{ 
+                            p: 3, 
+                            textAlign: 'center',
+                            height: '100vh',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>
+                            <Typography variant="h4" color="error" gutterBottom>
+                                Something went wrong
+                            </Typography>
+                            <Button 
+                                variant="contained" 
+                                onClick={() => window.location.reload()}
+                            >
+                                Reload Page
+                            </Button>
+                        </Box>
+                    );
+                }
+                
+                return this.props.children;
+            }
+        }
+        
+        // アプリケーションのレンダリング
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(
+            <ErrorBoundary>
+                <App />
+            </ErrorBoundary>
+        );
+    </script>
+</body>
+</html>

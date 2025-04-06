@@ -1,0 +1,27 @@
+{
+  "schoolsPageTitle": "Our Schools",
+  "schoolsPageDescription": "Introduction to Yumetoki Commercial Co., Ltd. schools, phone numbers, maps and features",
+  "schoolsTitle": "Our Schools",
+  "schoolsPageIntro": "We have multiple schools across Taipei City, each with its unique environment and facilities. Please select a school near you to view details.",
+  "school": "School",
+  "schoolDetailTitle": "School Details",
+  "schoolDetailDescription": "Detailed information about {{schoolName}}, including address, phone, opening hours and access information",
+  "galleryTitle": "School Photos",
+  "schoolFeaturesTitle": "School Features",
+  "accessInformation": "Access Information",
+  "address": "Address",
+  "phone": "Phone",
+  "hours": "Opening Hours",
+  "weekdays": "Weekdays",
+  "weekends": "Weekends",
+  "directions": "Directions",
+  "locationMap": "Location Map",
+  "viewDetails": "View Details",
+  "contactSchool": "Contact School",
+  "backToSchoolsList": "Back to Schools List",
+  "schoolNotFound": "School information not found",
+  "errors": {
+    "failedToLoadSchools": "Failed to load schools list. Please try again later",
+    "failedToLoadSchoolDetails": "Failed to load school details. Please try again later"
+  }
+}

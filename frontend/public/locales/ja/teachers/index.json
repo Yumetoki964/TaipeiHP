@@ -1,0 +1,23 @@
+{
+  "pageTitle": "講師紹介",
+  "pageDescription": "夢時商業股份有限公司のプロフェッショナル講師紹介、経歴、専門分野",
+  "pageHeading": "講師紹介",
+  "pageIntro": "夢時商業では、経験豊富な講師院が質の高い教育サービスを提供しています。",
+  "teachersTitle": "講師紹介",
+  "teachersSubtitle": "私たちの講師と専門分野についてさらに詳しく知る",
+  "searchTeachers": "講師を検索",
+  "filterBySpecialty": "専門分野で絞り込み",
+  "allSpecialties": "すべての専門分野",
+  "noTeachersFound": "該当する講師が見つかりません",
+  "teacherDetailTitle": "講師詳細",
+  "teacherDetailDescription": "{{teacherName}}の詳細な紹介、専門分野、経歴",
+  "biography": "経歴",
+  "specialties": "専門分野",
+  "backToTeachersList": "講師一覧に戻る",
+  "teacherNotFound": "講師情報が見つかりません",
+  "contactForLesson": "授業のお問い合わせ",
+  "errors": {
+    "failedToLoadTeachers": "講師一覧の読み込みに失敗しました。後ほど再試行してください",
+    "failedToLoadTeacherDetails": "講師詳細の読み込みに失敗しました。後ほど再試行してください"
+  }
+}

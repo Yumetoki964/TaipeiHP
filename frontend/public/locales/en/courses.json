@@ -1,0 +1,60 @@
+{
+  "pageTitle": "Courses",
+  "metaDescription": "Introduction to various educational courses offered by Yumetoki Commercial Co., Ltd. Learn about our one-on-one tutoring programs for elementary school students to adults.",
+  "title": "Our Courses",
+  "subtitle": "Personalized tutoring programs for each student",
+  "overview": "Yumetoki Commercial Co., Ltd. offers a wide range of educational programs for students from elementary school to high school, university students, and working professionals. Each course is customized to the individual needs and learning styles of the students, maximizing learning efficiency through one-on-one tutoring.",
+  
+  "ageGroupsTitle": "Target Age Groups",
+  "ageGroups": {
+    "elementary": {
+      "title": "Elementary School",
+      "age": "6-12 years old",
+      "description": "Emphasizes improving basic academic skills and establishing learning habits in a fun and engaging environment."
+    },
+    "junior": {
+      "title": "Junior High School",
+      "age": "12-15 years old",
+      "description": "Focuses on preparing for the Basic Competence Test and improving school grades with systematic learning support."
+    },
+    "high": {
+      "title": "High School",
+      "age": "15-18 years old",
+      "description": "Supports university entrance exam preparation and advanced learning skills acquisition for future careers."
+    },
+    "adult": {
+      "title": "University & Adults",
+      "age": "18+ years old",
+      "description": "Supports learning according to specific goals, such as improving language skills or specialized knowledge for career advancement."
+    }
+  },
+  
+  "courseList": "Available Courses",
+  "noCourses": "There are no courses available at the moment.",
+  "courseDescription": "Course Description",
+  "features": "Course Features",
+  "pricing": "Pricing",
+  "pricingNote": "* Prices are for reference. Please contact each school for details.",
+  "pricingContactUs": "Please contact us for detailed pricing information.",
+  "contactInfo": "Contact Information",
+  "contactDescription": "For questions about course details or pricing, please feel free to contact us.",
+  "targetAge": "Target Age",
+  
+  "trialLesson": {
+    "title": "Free Trial Lesson",
+    "description": "Would you like to experience Yumetoki Commercial Co., Ltd.'s educational programs firsthand? Our free trial lessons allow you to directly experience our teaching methods and the quality of our one-on-one instruction.",
+    "benefits": {
+      "title": "Trial Lesson Benefits",
+      "benefit1": "One-on-one instruction with an experienced teacher",
+      "benefit2": "Detailed assessment of learning level and goals",
+      "benefit3": "Proposal of a learning plan and educational advice"
+    },
+    "cta": "Schedule a Trial Lesson"
+  },
+  
+  "errors": {
+    "fetchFailed": "Failed to fetch course information.",
+    "detailsFailed": "Failed to fetch course details.",
+    "courseNotFound": "Course not found."
+  }
+}

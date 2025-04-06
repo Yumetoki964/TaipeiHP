@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Yumetoki - Professional 1-on-1 Tutoring",
+    "description": "Yumetoki provides high-quality personalized education services with professional 1-on-1 tutoring for students of all ages.",
+    "keywords": "education, tutoring, 1-on-1 tutoring, Taipei, Taiwan, personalized education"
+  },
+  "hero": {
+    "title": "Professional 1-on-1 Tutoring",
+    "subtitle": "Tailored learning plans for each student",
+    "cta": "Free Trial Lesson"
+  },
+  "features": {
+    "title": "Our Features",
+    "subtitle": "We provide the highest quality personalized education",
+    "feature1": {
+      "title": "1-on-1 Tutoring",
+      "desc": "Personalized teaching based on student's learning style and progress"
+    },
+    "feature2": {
+      "title": "Professional Teachers",
+      "desc": "Experienced teaching team providing high-quality education"
+    },
+    "feature3": {
+      "title": "All Ages Welcome",
+      "desc": "Courses suitable for elementary to high school students, and even university students and adults"
+    }
+  },
+  "schools": {
+    "title": "Our Schools",
+    "school1": {
+      "name": "Takuto Minghu School",
+      "address": "Neihu District, Taipei",
+      "details": "View Details"
+    },
+    "school2": {
+      "name": "Takuto Neihu Station School",
+      "address": "Neihu District, Taipei",
+      "details": "View Details"
+    }
+  },
+  "news": {
+    "title": "Latest News",
+    "more": "View More"
+  },
+  "sister": {
+    "title": "Our Sister Company in Japan",
+    "name": "Ginza Yumetoki Co., Ltd.",
+    "desc": "We work closely with Ginza Yumetoki in Japan to provide an international educational perspective",
+    "link": "Visit Ginza Yumetoki Website"
+  }
+}

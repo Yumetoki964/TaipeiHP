@@ -1,0 +1,27 @@
+{
+  "schoolsPageTitle": "校舎紹介",
+  "schoolsPageDescription": "夢時商業股份有限公司の校舎紹介、電話番号、地図、特徴",
+  "schoolsTitle": "校舎紹介",
+  "schoolsPageIntro": "台北市内に複数の校舎を構えており、それぞれが独自の環境と設備を持っています。お近くの校舎を選び、詳細をご覧ください。",
+  "school": "校舎",
+  "schoolDetailTitle": "校舎詳細",
+  "schoolDetailDescription": "{{schoolName}}の詳細情報、住所、電話番号、営業時間、アクセス方法",
+  "galleryTitle": "校舎写真",
+  "schoolFeaturesTitle": "校舎の特徴",
+  "accessInformation": "アクセス情報",
+  "address": "住所",
+  "phone": "電話",
+  "hours": "営業時間",
+  "weekdays": "平日",
+  "weekends": "週末",
+  "directions": "アクセス方法",
+  "locationMap": "地図",
+  "viewDetails": "詳細を見る",
+  "contactSchool": "お問い合わせ",
+  "backToSchoolsList": "校舎一覧に戻る",
+  "schoolNotFound": "校舎情報が見つかりません",
+  "errors": {
+    "failedToLoadSchools": "校舎一覧の読み込みに失敗しました。後ほど再試行してください",
+    "failedToLoadSchoolDetails": "校舎詳細の読み込みに失敗しました。後ほど再試行してください"
+  }
+}

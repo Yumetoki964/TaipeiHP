@@ -1,0 +1,38 @@
+{
+  "metaTitle": "About Us | Yumetoki Education",
+  "metaDescription": "Learn about Yumetoki Education's history, mission, vision, and our commitment to providing quality personalized education in Taiwan.",
+  "pageTitle": "About Us",
+  "pageSubtitle": "Learn about our company, history, and educational philosophy",
+  
+  "companyInfo": {
+    "title": "Company Information",
+    "officeImage": "Company Office",
+    "established": "Established",
+    "representative": "Representative",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "registrationNumber": "Registration Number"
+  },
+  
+  "vision": {
+    "title": "Our Vision & Mission",
+    "description": "At Yumetoki Education, we are driven by a clear vision and mission to transform education through personalized learning.",
+    "mission": "Our Mission",
+    "missionText": "To create the best learning experience for each student through personalized teaching methods, inspire their learning potential, and cultivate a passion for lifelong learning.",
+    "vision": "Our Vision",
+    "visionText": "To become the most trusted provider of personalized educational services in Taiwan, helping students achieve success in their academic and personal lives.",
+    "values": "Our Core Values",
+    "valuesText": "Personalized attention, high-quality teaching, continuous innovation, integrity and respect, lifelong learning."
+  },
+  
+  "history": {
+    "title": "Our History",
+    "description": "The journey of Yumetoki Education from its founding to the present day, marked by continuous growth and commitment to educational excellence."
+  },
+  
+  "sisterCompany": {
+    "title": "Our Sister Company in Japan",
+    "description": "Learn about our sister company in Japan, which has been providing quality education services for over 45 years."
+  }
+}

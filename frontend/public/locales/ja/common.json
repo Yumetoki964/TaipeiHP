@@ -1,0 +1,21 @@
+{
+  "menu": {
+    "home": "ホーム",
+    "about": "私たちについて",
+    "courses": "コース紹介",
+    "schools": "校舎紹介",
+    "teachers": "講師紹介",
+    "faq": "よくある質問",
+    "blog": "ブログ",
+    "contact": "お問い合わせ"
+  },
+  "footer": {
+    "company": "夢時商業股份有限公司",
+    "rights": "© 2025 All Rights Reserved",
+    "address": "台北市内湖区",
+    "phone": "電話：",
+    "email": "メール：",
+    "follow": "フォローする："
+  },
+  "readMore": "続きを読む"
+}

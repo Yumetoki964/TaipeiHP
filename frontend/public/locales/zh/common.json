@@ -1,0 +1,21 @@
+{
+  "menu": {
+    "home": "首頁",
+    "about": "關於我們",
+    "courses": "課程介紹",
+    "schools": "校舍介紹",
+    "teachers": "師資介紹",
+    "faq": "常見問題",
+    "blog": "教育專欄",
+    "contact": "聯絡我們"
+  },
+  "footer": {
+    "company": "夢時商業股份有限公司",
+    "rights": "© 2025 所有權利保留",
+    "address": "台北市內湖區",
+    "phone": "電話：",
+    "email": "電子郵件：",
+    "follow": "關注我們："
+  },
+  "readMore": "閱讀更多"
+}

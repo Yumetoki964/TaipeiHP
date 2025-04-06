@@ -1,0 +1,38 @@
+{
+  "metaTitle": "關於我們 | 夢時教育",
+  "metaDescription": "了解夢時教育的歷史、使命、願景以及我們致力於在台灣提供優質個人化教育的承諾。",
+  "pageTitle": "關於我們",
+  "pageSubtitle": "了解我們的公司、歷史和教育理念",
+  
+  "companyInfo": {
+    "title": "公司資訊",
+    "officeImage": "公司辦公室",
+    "established": "成立年份",
+    "representative": "代表人",
+    "address": "地址",
+    "phone": "電話",
+    "email": "電子郵件",
+    "registrationNumber": "登記號碼"
+  },
+  
+  "vision": {
+    "title": "願景與使命",
+    "description": "在夢時教育，我們以明確的願景和使命驅動，通過個人化學習改變教育。",
+    "mission": "我們的使命",
+    "missionText": "透過個人化教學方式，為每位學生創造最佳的學習體驗，激發其學習潛力，培養終身學習的熱情。",
+    "vision": "我們的願景",
+    "visionText": "成為台灣最值得信賴的個人化教育服務提供者，幫助學生在學業與生活中取得成功。",
+    "values": "我們的核心價值",
+    "valuesText": "個人化關注、高品質教學、持續創新、誠信與尊重、終身學習。"
+  },
+  
+  "history": {
+    "title": "我們的歷史",
+    "description": "夢時教育從創立至今的旅程，以持續成長和對教育卓越的承諾為標誌。"
+  },
+  
+  "sisterCompany": {
+    "title": "我們在日本的姐妹公司",
+    "description": "了解我們在日本的姐妹公司，該公司已提供優質教育服務超過45年。"
+  }
+}
