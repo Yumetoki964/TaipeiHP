@@ -37,10 +37,24 @@ const TeacherList = () => {
     const fetchTeachers = async () => {
       try {
         setLoading(true);
-        const data = await teacherService.getAllTeachers();
-        setTeachers(data);
-        setFilteredTeachers(data);
-        setSpecialties(getAllSpecialties(data));
+        const response = await teacherService.getAllTeachers();
+        
+        // APIレスポンス形式の違いを処理（開発環境と本番環境で異なる場合）
+        let teacherData;
+        if (Array.isArray(response)) {
+          // 開発環境：直接配列が返される
+          teacherData = response;
+        } else if (response.data) {
+          // 本番環境：{success, message, data}形式のオブジェクト
+          teacherData = response.data;
+        } else {
+          // 想定外の形式
+          throw new Error('Unexpected API response format');
+        }
+        
+        setTeachers(teacherData);
+        setFilteredTeachers(teacherData);
+        setSpecialties(getAllSpecialties(teacherData));
         setLoading(false);
       } catch (err) {
         console.error('Failed to fetch teachers:', err);
